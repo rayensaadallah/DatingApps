@@ -17,11 +17,13 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
          private readonly ITokenService _tokenService;
+         
         public AccountController(DataContext context, ITokenService tokenService)
         {
             _context = context;
+            _tokenService = tokenService;
         }
-        [HttpPost("register")]// 404 erro 
+        [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if(await UserExist(registerDto.Username)) return BadRequest("Username is taken");
@@ -43,7 +45,7 @@ namespace API.Controllers
             };
         }
         [HttpPost("login")]
-        public async Task<ActionResult<AppUser>> Login (LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login (LoginDto loginDto)
         {
             var user = await _context.Users
             .SingleOrDefaultAsync(x=> x.UserName == loginDto.Username);
@@ -54,7 +56,11 @@ namespace API.Controllers
             {
                 if (computerHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
             }
-            return user;
+            return new UserDto
+            {
+                Username =user.UserName,
+                Token = _tokenService.CreateToken(user)   
+            };
         }
 
         private async Task<bool> UserExist(string username)
