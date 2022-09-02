@@ -61,3 +61,5 @@ C:\Users\Rayen's PC\demo\datingapp\API\obj\Debug\net6.0\refint\API.dll
 C:\Users\Rayen's PC\demo\datingapp\API\obj\Debug\net6.0\API.pdb
 C:\Users\Rayen's PC\demo\datingapp\API\obj\Debug\net6.0\API.genruntimeconfig.cache
 C:\Users\Rayen's PC\demo\datingapp\API\obj\Debug\net6.0\ref\API.dll
+C:\Users\Rayen's PC\demo\datingapp\API\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Rayen's PC\demo\datingapp\API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
